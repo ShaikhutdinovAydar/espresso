@@ -1,15 +1,16 @@
 import sys
 import random
-from PyQt5 import uic
 from PyQt5.QtGui import QPainter, QColor
-from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton
 
 
 class MyWidget(QMainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('UI.ui', self)
         self.c = 0
+        self.setGeometry(0, 0, 600, 600)
+        self.setWindowTitle('Git и желтые окружности')
+        self.btn = QPushButton('Создать', self)
         self.btn.clicked.connect(self.up)
 
     def up(self):
@@ -24,15 +25,15 @@ class MyWidget(QMainWindow):
             self.qp.end()
 
     def create_cyrcle(self):
-        r = random.randint(0, 300)
-        x = random.randint(0, 500)
-        y = random.randint(0, 500)
-        r_1 = random.randint(0, 300)
-        x_1 = random.randint(0, 500)
-        y_1 = random.randint(0, 500)
-        self.qp.setBrush(QColor(255, 255, 0))
-        self.qp.drawEllipse(x, y, r, r)
-        self.qp.drawEllipse(x_1, y_1, r_1, r_1)
+        for i in range(10):
+            rad = random.randint(0, 300)
+            x = random.randint(0, 500)
+            y = random.randint(0, 500)
+            r = random.randint(0, 255)
+            g = random.randint(0, 255)
+            b = random.randint(0, 255)
+            self.qp.setBrush(QColor(r, g, b))
+            self.qp.drawEllipse(x, y, rad, rad)
 
 
 if __name__ == '__main__':
